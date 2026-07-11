@@ -12,7 +12,7 @@ defineProps({
         type: String,
         required: true
     },
-    dificultad: {
+    resumen: {
         type: String,
         required: true
     }
@@ -20,63 +20,86 @@ defineProps({
 </script>
 
 <template>
-    <div class="container">
+    <div class="card">
         <div class="cabecera">
             <h3>{{ ejercicio }}</h3>
         </div>
-        <div class="card">
-            <figure>
-                <div class="cuadro">
-                    <img src="/assets/foto.png" alt="Pendiente de imagen">
-                    <div class="texto">{{ descripcion }}</div>
-                </div>
-            </figure>
-            <div class="contenido">
-                <a href=url>Visualizar Resultado</a>
+        <figure>
+            <div class="cuadro">
+                <img src="/assets/foto.png" alt="Pendiente de imagen">
+                <div class="texto">{{ descripcion }}</div>
             </div>
+        </figure>
+        <div class="contenido">
+            <a href=url>Visualizar Resultado</a>
+            <div class="texto2">{{ resumen }}</div>
         </div>
     </div>
 </template>
 
 <style scoped>
-.container {
-    width: 100%;
-    display: flex;
-    max-width: 500px;
-}
 
 .card {
     width: 100%;
     margin: 20px;
-    border-radius: 6px;
+    border-radius: 10px;
     overflow: hidden;
-    background-image: linear-gradient(150deg, rgb(0, 255, 128), rgba(35, 255, 108, 0.404));
-    box-shadow: 0px 1px 10px rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(8px);
+    box-shadow: inset 0px 1px 10px rgba(255, 255, 255, 0.2);
     cursor: default;
     transition: all 400ms ease;
 }
 
 .card:hover {
-    box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.4);
+    box-shadow: inset 0px 10px 154px rgba(255, 255, 255, 0.219);
     transform: translateY(-3%);
 }
-
 
 .card .contenido {
     padding: 15px;
     text-align: center;
-    background-color: rgb(255, 255, 255);
+    background-color: transparent;
     border-radius: 30px;
     width: 95%;
     height: 150px;
     margin: auto;
     margin-bottom: 10px;
-    box-shadow: inset 0px 0px 10px rgba(0, 0, 0, 0.596);
 }
 
 .cuadro {
     position: relative;
     text-align: center;
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+}
+
+.texto2 {
+    font-family: Google Sans;
+    line-height: 1.5;
+    font-weight: 500;
+    letter-spacing: 0px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    margin-top: 25px;
+    font-size: 30px;
+    text-shadow: 0px 1px 2px rgba(230, 230, 230, 0.158);
+    background-image: linear-gradient(var(--angle), rgba(151, 151, 151, 0.521), rgb(233, 233, 233));
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: move 2s linear alternate infinite;
+}
+
+@keyframes move {
+    0% { --angle: 0.25turn }
+    100% { --angle: 0.75turn }
+}
+
+@property --angle {
+    syntax: "<angle>";
+    inherits: false;
+    initial-value: 0turn;
 }
 
 .texto {
@@ -96,18 +119,19 @@ defineProps({
     text-align: center;
     align-items: center;
     display: flex;
-    width: 95.3%;
-    height: 90%;
+    width: 90.10%;
+    height: 84.70%;
     border-radius: 6px;
     padding-left: 20px;
     padding-right: 20px;
     padding-bottom: 20px;
     padding-top: 20px;
-    margin-top: -1.5px;
+    margin-top: 0.2px;
+    margin-left: 0.125px;
 }
 
 .texto:hover {
-    opacity: 1;
+    opacity: 0.75;
     color: rgb(255, 255, 255);
     text-shadow: 0px 2px 3px black;
     background-color: #ffffff85;
@@ -124,13 +148,12 @@ defineProps({
     margin-bottom: 10px;
 }
 
-.container .cabecera h3 {
+.cabecera {
     font-family: Google Sans;
     font-weight: bold;
     letter-spacing: 0px;
     font-size: 25px;
-    margin-top: 10px;
-    margin-bottom: 10px;
+    margin-top: 20px;
 }
 
 .card .contenido a {
@@ -139,16 +162,15 @@ defineProps({
     text-decoration: none;
     display: inline-block;
     padding: 10px;
-    margin-top: 5px;
     color: rgb(255, 255, 255);
     text-shadow: 0px 2px 5px rgba(0, 0, 0, 0.144);
     box-shadow: inset 0px 0px 5px rgba(255, 255, 255, 0.37);
-    background-image: linear-gradient(150deg, rgb(0, 255, 128), rgba(35, 255, 108, 0.404));
+    background-image: linear-gradient(150deg, rgb(226, 226, 226), rgba(51, 51, 51, 0.404));
     border-radius: 15px;
     transition: all 400ms ease;
 }
 
 .card .contenido a:hover {
-    background-image: linear-gradient(150deg, rgba(35, 255, 108, 0.404), rgb(0, 255, 128));
+    background-image: linear-gradient(150deg, rgba(51, 51, 51, 0.404), rgb(226, 226, 226));
 }
 </style>

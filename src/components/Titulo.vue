@@ -19,10 +19,10 @@ defineProps({
 <style scoped>
 
 .cabecera h1 {
-    text-shadow: 2px 2px 5px rgba(255, 255, 255, 0.144);
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.158);
     font-family: Google Sans;
     font-weight: 700;
-    font-size: 100px;
+    font-size: 150px;
     background-image: linear-gradient(var(--angle), rgb(245, 241, 21), rgb(0, 4, 255));
     background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -30,6 +30,9 @@ defineProps({
     text-align: center;
     font-size: 100px;
     letter-spacing: -1px;
+    padding: 40px;
+    padding-top: 30px;
+    padding-bottom: 30px;
 }
 
 @keyframes move {
@@ -45,7 +48,7 @@ defineProps({
 
 .cabecera {
     align-items: center;
-    margin-top: 50px;
+    margin-top: 30px;
     margin-bottom: 30px;
 }
 </style>
