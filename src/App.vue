@@ -14,10 +14,10 @@ import TarjetaEjercicio from './components/TarjetaEjercicio.vue';
       <Titulo titulo="EJERCICIOS INSYSTECH"/>
     </div>
     <div class="bloque">
-      <TarjetaEjercicio ejercicio="Ejercicio 1" descripcion="Conectar ASP.NET Core (C#) con Vue.js y configurar CORS" url=no hay link resumen="SETUP y CORS"></TarjetaEjercicio>
-      <TarjetaEjercicio ejercicio="Ejercicio 2" descripcion="Conectar ASP.NET Core (C#) con Vue.js y configurar CORS" url=no hay link resumen="SETUP y CORS"></TarjetaEjercicio>
-      <TarjetaEjercicio ejercicio="Ejercicio 1" descripcion="Conectar ASP.NET Core (C#) con Vue.js y configurar CORS" url=link resumen="SETUP y CORS"></TarjetaEjercicio>
-      <TarjetaEjercicio ejercicio="Ejercicio 1" descripcion="Conectar ASP.NET Core (C#) con Vue.js y configurar CORS" url=link resumen="SETUP y CORS"></TarjetaEjercicio>
+      <TarjetaEjercicio ejercicio="Ejercicio 1" descripcion="Conectar ASP.NET Core (C#) con Vue.js y configurar Pliticas CORS en Program.cs" url="no hay link" resumen="SETUP y CORS"></TarjetaEjercicio>
+      <TarjetaEjercicio ejercicio="Ejercicio 2" descripcion="Endpoint que devuelva JSON con tasas de cambio USD y EUR. Consumir en onMounted y mostrar tarjetas reactivas" url="no hay link" resumen="WIDGET FINANCIERO"></TarjetaEjercicio>
+      <TarjetaEjercicio ejercicio="Ejercicio 3" descripcion="Endpoint POST que reciba sueldo bruto, deduzca impuestos y devuelva neto. Formulario de ingreso de sueldo e impresión del recibo dinámico" url="link" resumen="NÓMINA (LÓGICA)"></TarjetaEjercicio>
+      <TarjetaEjercicio ejercicio="Ejercicio 4" descripcion="Conectar ASP.NET Core (C#) con Vue.js y configurar CORS" url="link" resumen="SETUP y CORS"></TarjetaEjercicio>
     </div>
   </body>
 </template>
@@ -31,10 +31,9 @@ import TarjetaEjercicio from './components/TarjetaEjercicio.vue';
 
 body {
   text-align: center;
-  vertical-align: center;
   justify-content: center;
   background:  
-    linear-gradient(rgba(0, 0, 0, 0.445), rgba(0, 0, 0, 0.39)),
+    linear-gradient(rgba(0, 0, 0, 0.226), rgba(0, 0, 0, 0.336)),
     url('/assets/foto2.jpeg');
   background-position: center center;
   background-repeat: no-repeat;
@@ -44,10 +43,12 @@ body {
 
 .bloque {
   display: grid;
+  justify-items: center;
   grid-template-columns: repeat(3, 1fr);
   margin: 0 auto;
   gap: 20px;
   max-width: 1200px;
+  height: 1000px;
 }
 
 .titulo-principal {

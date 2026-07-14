@@ -77,15 +77,15 @@ defineProps({
 .texto2 {
     font-family: Google Sans;
     line-height: 1.5;
-    font-weight: 500;
+    font-weight: 700;
     letter-spacing: 0px;
     text-align: center;
     display: flex;
     justify-content: center;
     margin-top: 25px;
     font-size: 30px;
-    text-shadow: 0px 1px 2px rgba(230, 230, 230, 0.158);
-    background-image: linear-gradient(var(--angle), rgba(151, 151, 151, 0.521), rgb(233, 233, 233));
+    text-shadow: 0px 1px 2px rgba(230, 230, 230, 0.699);
+    background-image: linear-gradient(var(--angle), rgba(34, 34, 34, 0.993), rgb(233, 233, 233));
     background-clip: text;
     -webkit-text-fill-color: transparent;
     animation: move 2s linear alternate infinite;
@@ -105,7 +105,7 @@ defineProps({
 .texto {
     font-family: Google Sans;
     line-height: 1.5;
-    font-weight: lighter;
+    font-weight: 500;
     letter-spacing: -1px;
     color: #6a6a6a;
     position: absolute;
@@ -136,6 +136,7 @@ defineProps({
     text-shadow: 0px 2px 3px black;
     background-color: #ffffff85;
     backdrop-filter: blur(2px);
+    box-shadow: 0px 0px 5px #ffffff85;
     box-sizing: inset 0px 0px 10px black;
 }
 
@@ -152,25 +153,27 @@ defineProps({
     font-family: Google Sans;
     font-weight: bold;
     letter-spacing: 0px;
-    font-size: 25px;
+    font-size: 35px;
     margin-top: 20px;
+    color: rgb(204, 204, 204);
+    text-shadow: 0px 0px 10px rgba(0, 0, 0, 0.644);
 }
 
 .card .contenido a {
     font-family: Google Sans;
     font-weight: bold;
     text-decoration: none;
-    display: inline-block;
     padding: 10px;
     color: rgb(255, 255, 255);
     text-shadow: 0px 2px 5px rgba(0, 0, 0, 0.144);
-    box-shadow: inset 0px 0px 5px rgba(255, 255, 255, 0.37);
-    background-image: linear-gradient(150deg, rgb(226, 226, 226), rgba(51, 51, 51, 0.404));
     border-radius: 15px;
     transition: all 400ms ease;
+    padding: 15px 15px 15px 15px;
 }
 
 .card .contenido a:hover {
-    background-image: linear-gradient(150deg, rgba(51, 51, 51, 0.404), rgb(226, 226, 226));
+    background-color: rgba(255, 255, 255, 0.226);
+    text-shadow: 0px 2px 5px rgba(0, 0, 0, 0.678);
+    box-shadow: inset 0px 0px 5px rgba(255, 255, 255, 0.61);
 }
 </style>
