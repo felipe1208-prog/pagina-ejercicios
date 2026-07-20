@@ -31,7 +31,7 @@ defineProps({
             </div>
         </figure>
         <div class="contenido">
-            <a href=url>Visualizar Resultado</a>
+            <router-link class="boton" :to=url>Visualizar Resultado</router-link>
             <div class="texto2">{{ resumen }}</div>
         </div>
     </div>
@@ -160,7 +160,7 @@ defineProps({
     text-shadow: 0px 0px 10px rgba(0, 0, 0, 0.644);
 }
 
-.card .contenido a {
+.boton {
     font-family: Google Sans;
     font-weight: bold;
     text-decoration: none;
@@ -172,7 +172,7 @@ defineProps({
     padding: 15px 15px 15px 15px;
 }
 
-.card .contenido a:hover {
+.boton:hover {
     background-color: rgba(255, 255, 255, 0.226);
     text-shadow: 0px 2px 5px rgba(0, 0, 0, 0.678);
     box-shadow: inset 0px 0px 5px rgba(255, 255, 255, 0.61);
