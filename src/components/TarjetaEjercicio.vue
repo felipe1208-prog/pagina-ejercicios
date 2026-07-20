@@ -26,7 +26,7 @@ defineProps({
         </div>
         <figure>
             <div class="cuadro">
-                <img src="/assets/foto.png" alt="Pendiente de imagen">
+                <img src="/assets/fotoo.jpeg" alt="Pendiente de imagen">
                 <div class="texto">{{ descripcion }}</div>
             </div>
         </figure>
@@ -41,6 +41,7 @@ defineProps({
 
 .card {
     width: 100%;
+    height: 450px;
     margin: 20px;
     border-radius: 10px;
     overflow: hidden;
