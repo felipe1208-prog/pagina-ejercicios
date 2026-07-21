@@ -136,10 +136,10 @@ defineProps({
 }
 
 .texto:hover {
-    opacity: 0.75;
+    opacity: 1;
     color: rgb(255, 255, 255);
     text-shadow: 0px 2px 3px black;
-    background-color: #ffffff85;
+    background-color: #5b5a5a85;
     backdrop-filter: blur(2px);
     box-shadow: 0px 0px 5px #ffffff85;
     box-sizing: inset 0px 0px 10px black;
