@@ -8,91 +8,106 @@ const listaTarjetasEjercicios = ref([
         id: "1",
         descripcion: "Conectar ASP.NET Core (C#) con Vue.js y configurar Politicas CORS en Program.cs",
         url: "/ejercicio1",
-        resumen: "SETUP y CORS"
+        resumen: "SETUP y CORS",
+        img: "../assets/cap1.png"
     },
     {
         id: "2",
         descripcion: "Endpoint GET que devuelva JSON con tasa de cambio (USD, EUR). Consumir en onMounted y mostrar tarjetas reactivas",
         url: "nohay",
-        resumen: "WIDGET FINANCIERO"
+        resumen: "WIDGET FINANCIERO",
+        img: "../assets/fotoo.jpeg"
     },
     {
         id: "3",
         descripcion: "Endpoint POST que reciba sueldo bruto, deduzca impuestos y devuelva neto. Formulario de ingreso de sueldo e impresión del recibo dinámico",
         url: "nohay",
-        resumen: "NÓMINA (LÓGICA)"
+        resumen: "NÓMINA (LÓGICA)",
+        img: "../assets/fotoo.jpeg"
     },
     {
         id: "4",
         descripcion: "Endpoint GET con parámetro. Filtrar lista usando .Where(). Input que dispara búsquedas al teclear y renderiza empleados.",
         url: "nohay",
-        resumen: "DIRECTORIO"
+        resumen: "DIRECTORIO",
+        img: "../assets/fotoo.jpeg"
     },
     {
         id: "5",
         descripcion: "Proteger DTO con [Required] y [EmailAddress]. Manejar HTTP 400 y mostrar textos en rojo",
         url: "nohay",
-        resumen: "ERRORES"
+        resumen: "ERRORES",
+        img: "../assets/fotoo.jpeg"
     },
     {
         id: "6",
         descripcion: "Add-Migration para tabla Activos. Endpoints completos. DataGrid para listar, editar y eliminar activos",
         url: "nohay",
-        resumen: "INVENTARIO TI (CRUD)"
+        resumen: "INVENTARIO TI (CRUD)",
+        img: "../assets/fotoo.jpeg"
     },
     {
         id: "7",
         descripcion: "Insertar cabecera y detalle en BD en una transacción. Carrito que acumula items y envía JSON estructurado",
         url: "nohay",
-        resumen: "FACTURACIÓN (1:N)"
+        resumen: "FACTURACIÓN (1:N)",
+        img: "../assets/fotoo.jpeg"
     },
     {
         id: "8",
         descripcion: "Aplicar .AsNoTracking() , .Skip() y .Take(). Tabla con botones llamando bloques de datos",
         url: "nohay",
-        resumen: "REPORTE PAGINADO"
+        resumen: "REPORTE PAGINADO",
+        img: "../assets/fotoo.jpeg"
     },
     {
         id: "9",
         descripcion: "Recibir imagen, guardarla en carpeta y ruta en BD. Enviar form con FormData para binarios",
         url: "nohay",
-        resumen: "MESA AYUDA"
+        resumen: "MESA AYUDA",
+        img: "../assets/fotoo.jpeg"
     },
     {
         id: "10",
         descripcion: "Interceptar errores globales y devolver JSON (Status 500). Interceptores globales para mostrar Toast de error",
         url: "nohay",
-        resumen: "MIDDLEWARE ERROR"
+        resumen: "MIDDLEWARE ERROR",
+        img: "../assets/fotoo.jpeg"
     },
     {
         id: "11",
         descripcion: "Validar login en BD y emitir Token JWT. Guardar Token e inyectar en headers HTTP",
         url: "nohay",
-        resumen: "AUTH JWT"
+        resumen: "AUTH JWT",
+        img: "../assets/fotoo.jpeg"
     },
     {
         id: "12",
         descripcion: "Restringir endpoint con [Authorize(Roles='Gerente')]. Ocultar botón condicionalmente (v-if) según token",
         url: "nohay",
-        resumen: "APROBACIONES (ROL)"
+        resumen: "APROBACIONES (ROL)",
+        img: "../assets/fotoo.jpeg"
     },
     {
         id: "13",
         descripcion: "Sobrescribir SaveChangesAsync para estampar fecha/usuario.",
         url: "nohay",
-        resumen: "AUDITORÍA EF CORE"
+        resumen: "AUDITORÍA EF CORE",
+        img: "../assets/fotoo.jpeg"
     },
     {
         id: "14",
         descripcion: "Emitir alertas en vivo con Hub SignalR. Escuchar web-sockets y actualizar interfaz",
         url: "nohay",
-        resumen: "MONITOR SIGNALR"
+        resumen: "MONITOR SIGNALR",
+        img: "../assets/fotoo.jpeg"
     },
     {
         id: "15",
         descripcion: "Publicar API desde Visual Studio. Compilar frontend ( npm run build )",
         url: "nohay",
-        resumen: "DESPLIEGUE IIS"
+        resumen: "DESPLIEGUE IIS",
+        img: "../assets/fotoo.jpeg"
     },
     ])
 </script>
@@ -103,7 +118,7 @@ const listaTarjetasEjercicios = ref([
         <Titulo titulo="EJERCICIOS INSYSTECH"/>
         </div>
         <div class="bloque">
-            <TarjetaEjercicio v-for="info in listaTarjetasEjercicios" :key="info.id" :ejercicio="'Ejercicio ' + info.id" :descripcion="info.descripcion" :url="info.url" :resumen="info.resumen"></TarjetaEjercicio>
+            <TarjetaEjercicio v-for="info in listaTarjetasEjercicios" :key="info.id" :ejercicio="'Ejercicio ' + info.id" :descripcion="info.descripcion" :url="info.url" :resumen="info.resumen" :img="info.img"></TarjetaEjercicio>
         </div>
     </div>
 </template>

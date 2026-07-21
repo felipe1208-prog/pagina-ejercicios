@@ -15,6 +15,10 @@ defineProps({
     resumen: {
         type: String,
         required: true
+    },
+    img: {
+        type: String,
+        required: true
     }
 })
 </script>
@@ -26,7 +30,7 @@ defineProps({
         </div>
         <figure>
             <div class="cuadro">
-                <img src="/assets/fotoo.jpeg" alt="Pendiente de imagen">
+                <img :src=img alt="Pendiente de imagen">
                 <div class="texto">{{ descripcion }}</div>
             </div>
         </figure>
