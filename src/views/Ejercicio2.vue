@@ -14,10 +14,19 @@ const obtenerTasaBCV = async () => {
     }
 };
 
+const obtenerTasaEuro = async () => {
+    try {
+        const response = await axios.get("https://ve.dolarapi.com/v1/euros");
+        euro.value = response.data;
+    } catch (error) {
+        console.error("Error al cargar la tasa Euro: ", error);
+    }
+};
+
 onMounted(() => {
     obtenerTasaBCV();
-    console.log(tasaBCV);
-})
+    obtenerTasaEuro();
+});
 </script>
 
 <template></template>

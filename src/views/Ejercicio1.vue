@@ -340,8 +340,8 @@ onMounted(() => {
     padding: 1rem;
     border-radius: 1rem;
     background: #e8e8e8;
-    box-shadow: 20px 20px 60px #c5c5c5,
-            -20px -20px 60px #ffffff;
+    box-shadow: inset 5px 5px 10px #c5c5c5,
+        inset -5px -5px 10px #ffffff;
     transition: box-shadow 0.5s ease;
     font-size: 15px;
     width: 100px;
@@ -355,8 +355,6 @@ onMounted(() => {
 
 .input:focus {
     outline: none;
-    box-shadow: inset 5px 5px 10px #c5c5c5,
-                inset -5px -5px 10px #ffffff;
 }
 
 </style>
