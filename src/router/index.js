@@ -6,6 +6,7 @@ import Dolar from '@/views/Ejercicio2/Dolar.vue'
 import Euro from '@/views/Ejercicio2/Euro.vue'
 import Usdt from '@/views/Ejercicio2/Usdt.vue'
 import HomeEjercicio2 from '@/views/Ejercicio2/HomeEjercicio2.vue'
+import Inicio from '@/views/Ejercicio2/Inicio.vue'
 
 const router = createRouter({
   history: createWebHistory(),
@@ -23,12 +24,12 @@ const router = createRouter({
     {
       path: "/ejercicio2",
       component: HomeEjercicio2,
-      redirect: "/ejercicio2/home",
+      redirect: "/ejercicio2/inicio",
       children: [
         {
-          path: "home",
-          name: "HomeEjercicio2",
-          component: HomeEjercicio2
+          path: "inicio",
+          name: "Inicio",
+          component: Inicio
         },
         {
           path: "dolar",

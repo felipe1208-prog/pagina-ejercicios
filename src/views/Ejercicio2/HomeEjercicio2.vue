@@ -7,9 +7,10 @@ const tasaBCV = ref(0);
 const euro = ref(0);
 
 const rutasHeader = ref([
-    { nombre: "Dolar", ruta: "/ejercicio2/dolar" },
-    { nombre: "Euro", ruta: "/ejercicio2/euro" },
-    { nombre: "Usdt", ruta: "/ejercicio2/usdt" }
+    { nombre: "Tasas del Día", ruta: "/ejercicio2/inicio"},
+    { nombre: "Registro Dolar", ruta: "/ejercicio2/dolar" },
+    { nombre: "Registro Euro", ruta: "/ejercicio2/euro" },
+    { nombre: "Registro Usdt", ruta: "/ejercicio2/usdt" }
 ]);
 
 const obtenerTasaBCV = async () => {
@@ -48,3 +49,15 @@ onMounted(() => {
     </div>
     
 </template>
+
+<style scoped>
+.main-container {
+    display: flex;
+    min-height: 100vh;
+}
+
+.contenido {
+    flex-grow: 1;
+    padding: 20px;
+}
+</style>

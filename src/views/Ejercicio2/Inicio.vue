@@ -2,9 +2,7 @@
 </script>
 
 <template>
-    <h1>Soy la vista de Dolar
-        
-    </h1>
+    <h1>Soy la vista de inicio</h1>
 </template>
 
 <style scoped>
