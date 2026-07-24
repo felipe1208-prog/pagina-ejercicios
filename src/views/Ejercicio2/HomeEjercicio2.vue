@@ -3,7 +3,6 @@ import axios from 'axios';
 import { ref, onMounted } from 'vue';
 import Nav from '@/components/Nav.vue';
 
-const tasaBCV = ref(0);
 const euro = ref(0);
 
 const rutasHeader = ref([
@@ -12,15 +11,6 @@ const rutasHeader = ref([
     { nombre: "Registro Euro", ruta: "/ejercicio2/euro" },
     { nombre: "Registro Usdt", ruta: "/ejercicio2/usdt" }
 ]);
-
-const obtenerTasaBCV = async () => {
-    try {
-        const response = await axios.get("https://ve.dolarapi.com/v1/dolares");
-        tasaBCV.value = response.data;
-    } catch (error) {
-        console.error("Error al cargar tasa BCV: ", error);
-    }
-};
 
 const obtenerTasaEuro = async () => {
     try {
@@ -32,7 +22,6 @@ const obtenerTasaEuro = async () => {
 };
 
 onMounted(() => {
-    obtenerTasaBCV();
     obtenerTasaEuro();
 });
 </script>
