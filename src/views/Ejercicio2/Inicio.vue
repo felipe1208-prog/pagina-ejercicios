@@ -22,49 +22,152 @@ onMounted(() => {
     obtenerTasaBCV();
 });
 
+const tasaEuro = ref(0);
+
+const obtenerTasaEuro = async () => {
+    try {
+        indicador.value = 0;
+        const response = await axios.get("https://ve.dolarapi.com/v1/euros");
+        tasaEuro.value = response.data;
+        if (tasaEuro.value) {
+            indicador.value = 2;
+        };
+    } catch (error) {
+        console.error("Error al cargar la tasa Euro: ", error);
+    }
+};
+
+const flechaDerecha = ref(false);
+const flechaIzquierda = ref(false);
+const direccionTransicion = ref("slide-derecha");
+
+const cambiarValorIndicador = () => {
+    if (indicador.value == 1) {
+        direccionTransicion.value = "slide-derecha";
+        indicador.value = 2;
+    } else if (indicador.value == 2 && flechaDerecha.value == true) {
+        direccionTransicion.value = "slide-derecha";
+        indicador.value = 3;
+        flechaDerecha.value = false;
+    } else if (indicador.value == 2 && flechaIzquierda.value == true) {
+        direccionTransicion.value = "slide-izquierda";
+        indicador.value = 1;
+        flechaIzquierda.value = false;
+    } else {
+        direccionTransicion.value = "slide-izquierda";
+        indicador.value = 2;
+    };
+};
+
+const cambiarTasa = async () => {
+    if (indicador.value == 1) {
+        await obtenerTasaBCV();
+    } else if (indicador.value == 2) {
+        await obtenerTasaEuro();
+    } else {
+        //aqui va el usdt
+    }
+}
+
 </script>
 
 <template>
     <div class="cuadro-principal">
-        <!--Seccion Skeleton-->
-        <div class="comprobacion" v-if="indicador === 0">
-            <div class="circulo-flecha">
-                <i class="fa-solid fa-caret-left flecha"></i>
-            </div>
-            <div class="skeleton">
-                <h1>Cargando tasa...</h1>
-            </div>
-            <div class="circulo-flecha">
-                <i class="fa-solid fa-caret-right flecha"></i>
-            </div>
-        </div>
-        <!--Seccion del BCV-->
-        <div class="comprobacion" v-if="indicador === 1">
-            <div class="circulo-flecha">
-                <i class="fa-solid fa-caret-left flecha"></i>
-            </div>
-            <div class="tasa-bcv">
-                <div class="superior-tarjeta">
-                    <h1 class="titulo-tarjeta">{{ tasaBCV[0]?.promedio?.toFixed(2) }} Bs.</h1>
-                    <h1 class="titulo-tarjeta">=</h1>
-                    <h1 class="titulo-tarjeta">1$</h1>
+        <Transition :name="direccionTransicion" mode="out-in">
+            <div class="comprobacion" v-if="indicador === 0" key="0">
+                <!--Seccion Skeleton-->
+                <div class="circulo-flecha">
+                    <i class="fa-solid fa-caret-left flecha"></i>
                 </div>
-                <p class="linea"></p>
-                <div class="inferior-tarjeta">
-                    <div class="texto-inferior">
-                        <p class="detalle">Moneda: {{ tasaBCV[0].moneda }}</p>
-                        <p class="detalle">Fecha de Actualización: {{ new Date(tasaBCV[0].fechaActualizacion).toLocaleDateString('es-VE') }}</p>
-                        <p class="detalle">Dificultad de Compra: Imposible</p>
-                    </div>
-                    <div class="div-btn-recarga">
-                        <i class="fa-solid fa-rotate boton-recarga" @click="obtenerTasaBCV"></i>
-                    </div>
+                <div class="skeleton">
+                    <h1>Cargando tasa...</h1>
+                </div>
+                <div class="circulo-flecha">
+                    <i class="fa-solid fa-caret-right flecha"></i>
                 </div>
             </div>
-            <div class="circulo-flecha">
-                <i class="fa-solid fa-caret-right flecha"></i>
+            <div class="comprobacion" v-else-if="indicador === 1" key="1">
+                <!--Seccion del BCV-->
+                <div class="circulo-desactivado">
+                    <i class="fa-solid fa-caret-left flecha-desactivada"></i>
+                </div>
+                <div class="tasa-bcv">
+                    <div class="superior-tarjeta">
+                        <h1 class="titulo-tarjeta">{{ tasaBCV[0]?.promedio?.toFixed(2) }} Bs.</h1>
+                        <h1 class="titulo-tarjeta">=</h1>
+                        <h1 class="titulo-tarjeta">1$</h1>
+                    </div>
+                    <p class="linea"></p>
+                    <div class="inferior-tarjeta">
+                        <div class="texto-inferior">
+                            <p class="detalle">Moneda: {{ tasaBCV[0].moneda }}</p>
+                            <p class="detalle">Fecha de Actualización: {{ new Date(tasaBCV[0].fechaActualizacion).toLocaleDateString('es-VE') }}</p>
+                            <p class="detalle">Dificultad de Compra: Imposible</p>
+                        </div>
+                        <div class="div-btn-recarga">
+                            <i class="fa-solid fa-rotate boton-recarga" @click="obtenerTasaBCV"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="circulo-flecha" @click="cambiarValorIndicador(); cambiarTasa()">
+                    <i class="fa-solid fa-caret-right flecha"></i>
+                </div>
             </div>
-        </div>
+            <div class="comprobacion" v-else-if="indicador === 2" key="2">
+                <!--Seccion del Euro-->
+                <div class="circulo-flecha" @click="flechaIzquierda = true; cambiarValorIndicador(); cambiarTasa()">
+                    <i class="fa-solid fa-caret-left flecha"></i>
+                </div>
+                <div class="tasa-euro">
+                    <div class="superior-tarjeta">
+                        <h1 class="titulo-tarjeta">{{ tasaEuro[0]?.promedio?.toFixed(2) }} Bs.</h1>
+                        <h1 class="titulo-tarjeta">=</h1>
+                        <h1 class="titulo-tarjeta">1€</h1>
+                    </div>
+                    <p class="linea"></p>
+                    <div class="inferior-tarjeta">
+                        <div class="texto-inferior">
+                            <p class="detalle">Moneda: {{ tasaEuro[0].moneda }}</p>
+                            <p class="detalle">Fecha de Actualización: {{ new Date(tasaEuro[0].fechaActualizacion).toLocaleDateString('es-VE') }}</p>
+                            <p class="detalle">Dificultad de Compra: Poco Probable</p>
+                        </div>
+                        <div class="div-btn-recarga">
+                            <i class="fa-solid fa-rotate boton-recarga" @click="obtenerTasaEuro"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="circulo-flecha" @click="flechaDerecha = true; cambiarValorIndicador(); cambiarTasa()">
+                    <i class="fa-solid fa-caret-right flecha"></i>
+                </div>
+            </div>
+            <div class="comprobacion" v-else-if="indicador === 3" key="3">
+                <!--Seccion del Usdt-->
+                <div class="circulo-flecha" @click="flechaIzquierda = true; cambiarValorIndicador(); cambiarTasa()">
+                    <i class="fa-solid fa-caret-left flecha"></i>
+                </div>
+                <div class="tasa-usdt">
+                    <div class="superior-tarjeta">
+                        <h1 class="titulo-tarjeta">{{ tasaBCV[1]?.promedio?.toFixed(2) }} Bs.</h1>
+                        <h1 class="titulo-tarjeta">=</h1>
+                        <h1 class="titulo-tarjeta">1₮</h1>
+                    </div>
+                    <p class="linea"></p>
+                    <div class="inferior-tarjeta">
+                        <div class="texto-inferior">
+                            <p class="detalle">Moneda: {{ tasaBCV[1].moneda }}</p>
+                            <p class="detalle">Fecha de Actualización: {{ new Date(tasaBCV[1].fechaActualizacion).toLocaleDateString('es-VE') }}</p>
+                            <p class="detalle">Dificultad de Compra: Común</p>
+                        </div>
+                        <div class="div-btn-recarga">
+                            <i class="fa-solid fa-rotate boton-recarga" @click="obtenerTasaBCV"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="circulo-desactivado">
+                    <i class="fa-solid fa-caret-right flecha-desactivada"></i>
+                </div>
+            </div>
+        </Transition>
     </div>
 </template>
 
@@ -112,7 +215,35 @@ onMounted(() => {
     transform: scale(1);
 }
 
+.circulo-desactivado {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 60px;
+    width: 60px;
+    margin: 20px;
+}
+
+.flecha-desactivada {
+    font-size: 25px;
+    color: transparent;
+}
+
 .tasa-bcv {
+    border: 1px solid black;
+    min-height: 400px;
+    width: 700px;
+    border-radius: 30px;
+}
+
+.tasa-euro {
+    border: 1px solid black;
+    min-height: 400px;
+    width: 700px;
+    border-radius: 30px;
+}
+
+.tasa-usdt {
     border: 1px solid black;
     min-height: 400px;
     width: 700px;
@@ -201,6 +332,36 @@ onMounted(() => {
 
 .div-btn-recarga:active .boton-recarga {
     transform: rotate(360deg);
+}
+
+.slide-derecha-enter-active,
+.slide-derecha-leave-active {
+    transition: all 0.4s ease;
+}
+
+.slide-derecha-enter-from {
+    transform: translateX(150px);
+    opacity: 0;
+}
+
+.slide-derecha-leave-to {
+    transform: translateX(-150px);
+    opacity: 0;
+}
+
+.slide-izquierda-enter-active,
+.slide-izquierda-leave-active {
+    transition: all 0.4s ease;
+}
+
+.slide-izquierda-enter-from {
+    transform: translateX(-150px);
+    opacity: 0;
+}
+
+.slide-izquierda-leave-to {
+    transform: translateX(150px);
+    opacity: 0;
 }
 
 </style>

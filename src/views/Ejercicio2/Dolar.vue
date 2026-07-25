@@ -2,8 +2,8 @@
 </script>
 
 <template>
-    <h1>Soy la vista de Dolar
-        
+    <h1>
+        Soy la vista de Dolar
     </h1>
 </template>
 
