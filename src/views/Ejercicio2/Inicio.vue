@@ -51,7 +51,7 @@ const obtenerTasaUsdt = async () => {
 
 const flechaDerecha = ref(false);
 const flechaIzquierda = ref(false);
-const direccionTransicion = ref("slide-derecha");
+const direccionTransicion = ref("fade");
 
 const cambiarValorIndicador = () => {
     if (indicador.value == 1) {
@@ -88,14 +88,8 @@ const cambiarTasa = async () => {
         <Transition :name="direccionTransicion" mode="out-in">
             <div class="comprobacion" v-if="indicador === 0" key="0">
                 <!--Seccion Skeleton-->
-                <div class="circulo-flecha">
-                    <i class="fa-solid fa-caret-left flecha"></i>
-                </div>
                 <div class="skeleton">
-                    <h1>Cargando tasa...</h1>
-                </div>
-                <div class="circulo-flecha">
-                    <i class="fa-solid fa-caret-right flecha"></i>
+                    <div class="skeleton-loader"></div>
                 </div>
             </div>
             <div class="comprobacion" v-else-if="indicador === 1" key="1">
@@ -374,6 +368,34 @@ const cambiarTasa = async () => {
 .slide-izquierda-leave-to {
     transform: translateX(150px);
     opacity: 0;
+}
+
+.fade-enter-active,
+.fade-leave-active {
+    transition: opacity 0.3s ease;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+    opacity: 0;
+}
+
+.skeleton-loader {
+    width: 100px; /* Qué tan ancho es el círculo */
+    height: 100px; /* Qué tan alto es el círculo */
+    border: 8px solid rgba(128, 128, 128, 0.2);
+    border-top: 8px solid black; /* El borde negro que va girando */
+    border-radius: 50%;
+    animation: giro-loader 1s linear infinite;
+}
+
+@keyframes giro-loader {
+    0% { 
+        transform: rotate(0deg); 
+    }
+    100% { 
+        transform: rotate(360deg); 
+    }
 }
 
 </style>
