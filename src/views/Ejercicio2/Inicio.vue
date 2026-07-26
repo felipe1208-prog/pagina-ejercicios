@@ -111,7 +111,7 @@ const cambiarTasa = async () => {
                             <p class="detalle">Dificultad de Compra: Imposible</p>
                         </div>
                         <div class="div-btn-recarga">
-                            <i class="fa-solid fa-rotate boton-recarga" @click="obtenerTasaBCV"></i>
+                            <i class="fa-solid fa-rotate boton-recarga" @click="indicador = 0; obtenerTasaBCV()"></i>
                         </div>
                     </div>
                 </div>
