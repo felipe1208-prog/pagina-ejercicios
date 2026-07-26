@@ -7,7 +7,6 @@ const indicador = ref(0);
 
 const obtenerTasaBCV = async () => {
     try {
-        indicador.value = 0;
         const response = await axios.get("https://ve.dolarapi.com/v1/dolares");
         tasaBCV.value = response.data;
         if (tasaBCV.value) {
@@ -26,7 +25,6 @@ const tasaEuro = ref(0);
 
 const obtenerTasaEuro = async () => {
     try {
-        indicador.value = 0;
         const response = await axios.get("https://ve.dolarapi.com/v1/euros");
         tasaEuro.value = response.data;
         if (tasaEuro.value) {
@@ -34,6 +32,20 @@ const obtenerTasaEuro = async () => {
         };
     } catch (error) {
         console.error("Error al cargar la tasa Euro: ", error);
+    }
+};
+
+const tasaUsdt = ref(0);
+
+const obtenerTasaUsdt = async () => {
+    try {
+        const response = await axios.get("https://ve.dolarapi.com/v1/dolares");
+        tasaUsdt.value = response.data;
+        if (tasaUsdt.value) {
+            indicador.value = 3;
+        };
+    } catch (error) {
+        console.error("Error al cargar tasa BCV: ", error);
     }
 };
 
@@ -65,7 +77,7 @@ const cambiarTasa = async () => {
     } else if (indicador.value == 2) {
         await obtenerTasaEuro();
     } else {
-        //aqui va el usdt
+        await obtenerTasaUsdt();
     }
 }
 
@@ -147,19 +159,19 @@ const cambiarTasa = async () => {
                 </div>
                 <div class="tasa-usdt">
                     <div class="superior-tarjeta">
-                        <h1 class="titulo-tarjeta">{{ tasaBCV[1]?.promedio?.toFixed(2) }} Bs.</h1>
+                        <h1 class="titulo-tarjeta">{{ tasaUsdt[1]?.promedio?.toFixed(2) }} Bs.</h1>
                         <h1 class="titulo-tarjeta">=</h1>
                         <h1 class="titulo-tarjeta">1₮</h1>
                     </div>
                     <p class="linea"></p>
                     <div class="inferior-tarjeta">
                         <div class="texto-inferior">
-                            <p class="detalle">Moneda: {{ tasaBCV[1].moneda }}</p>
-                            <p class="detalle">Fecha de Actualización: {{ new Date(tasaBCV[1].fechaActualizacion).toLocaleDateString('es-VE') }}</p>
+                            <p class="detalle">Moneda: {{ tasaUsdt[1].moneda }}</p>
+                            <p class="detalle">Fecha de Actualización: {{ new Date(tasaUsdt[1].fechaActualizacion).toLocaleDateString('es-VE') }}</p>
                             <p class="detalle">Dificultad de Compra: Común</p>
                         </div>
                         <div class="div-btn-recarga">
-                            <i class="fa-solid fa-rotate boton-recarga" @click="obtenerTasaBCV"></i>
+                            <i class="fa-solid fa-rotate boton-recarga" @click="obtenerTasaUsdt"></i>
                         </div>
                     </div>
                 </div>
