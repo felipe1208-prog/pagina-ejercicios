@@ -108,30 +108,35 @@ const cambiarTasa = async () => {
             </div>
             <div class="comprobacion" v-else-if="indicador === 1" key="1">
                 <!--Seccion del BCV-->
-                <div class="circulo-desactivado">
-                    <i class="fa-solid fa-caret-left flecha-desactivada"></i>
+                <div class="titulo-superior">
+                    <h1 class="titulo">Tasa BCV</h1>
                 </div>
-                <div class="tasa-bcv">
-                    <div class="superior-tarjeta">
-                        <h1 class="titulo-tarjeta">{{ tasaBCV[0]?.promedio?.toFixed(2) }} Bs.</h1>
-                        <h1 class="titulo-tarjeta">=</h1>
-                        <h1 class="titulo-tarjeta">1$</h1>
+                <div class="fila-tarjeta">
+                    <div class="circulo-desactivado">
+                        <i class="fa-solid fa-caret-left flecha-desactivada"></i>
                     </div>
-                    <p class="linea"></p>
-                    <div class="inferior-tarjeta">
-                        <div class="texto-inferior">
-                            <p class="detalle">Moneda: {{ tasaBCV[0].moneda }}</p>
-                            <p class="detalle">Fecha de Actualización: {{ new Date(tasaBCV[0].fechaActualizacion).toLocaleDateString('es-VE') }}</p>
-                            <p class="detalle">Dificultad de Compra: Imposible</p>
+                        <div class="tasa-bcv">
+                            <div class="superior-tarjeta">
+                                <h1 class="titulo-tarjeta">{{ tasaBCV[0]?.promedio?.toFixed(2) }} Bs.</h1>
+                                <h1 class="titulo-tarjeta">=</h1>
+                                <h1 class="titulo-tarjeta">1$</h1>
+                            </div>
+                            <p class="linea"></p>
+                            <div class="inferior-tarjeta">
+                                <div class="texto-inferior">
+                                    <p class="detalle">Moneda: {{ tasaBCV[0].moneda }}</p>
+                                    <p class="detalle">Fecha de Actualización: {{ new Date(tasaBCV[0].fechaActualizacion).toLocaleDateString('es-VE') }}</p>
+                                    <p class="detalle">Dificultad de Compra: Imposible</p>
+                                </div>
+                                <div class="div-btn-recarga">
+                                    <i class="fa-solid fa-rotate boton-recarga" @click="obtenerTasaBCV()"></i>
+                                </div>
+                                <ModalNotificacion :open="mostrarModal" mensaje="Tasa BCV Actualizada"/>
+                            </div>
                         </div>
-                        <div class="div-btn-recarga">
-                            <i class="fa-solid fa-rotate boton-recarga" @click="obtenerTasaBCV()"></i>
-                        </div>
-                        <ModalNotificacion :open="mostrarModal" mensaje="Tasa BCV Actualizada"/>
+                    <div class="circulo-flecha" @click="cambiarValorIndicador(); cambiarTasa()">
+                        <i class="fa-solid fa-caret-right flecha"></i>
                     </div>
-                </div>
-                <div class="circulo-flecha" @click="cambiarValorIndicador(); cambiarTasa()">
-                    <i class="fa-solid fa-caret-right flecha"></i>
                 </div>
             </div>
             <div class="comprobacion" v-else-if="indicador === 2" key="2">
@@ -203,7 +208,9 @@ const cambiarTasa = async () => {
 }
 
 .comprobacion {
+    width: 100%;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
 }
@@ -252,21 +259,7 @@ const cambiarTasa = async () => {
     color: transparent;
 }
 
-.tasa-bcv {
-    border: 1px solid black;
-    min-height: 400px;
-    width: 700px;
-    border-radius: 30px;
-}
-
-.tasa-euro {
-    border: 1px solid black;
-    min-height: 400px;
-    width: 700px;
-    border-radius: 30px;
-}
-
-.tasa-usdt {
+.tasa-bcv, .tasa-euro, .tasa-usdt {
     border: 1px solid black;
     min-height: 400px;
     width: 700px;
@@ -415,4 +408,28 @@ const cambiarTasa = async () => {
     }
 }
 
+.titulo-superior {
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    margin-bottom: 20px;
+    padding-left: 20px;
+    border-radius: 10px;
+    height: 70px;
+    align-items: center;
+    background-color: rgba(128, 128, 128, 0.322);
+}
+
+.titulo {
+    font-family: Google Sans;
+    letter-spacing: 10px;
+}
+
+.fila-tarjeta {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
 </style>
