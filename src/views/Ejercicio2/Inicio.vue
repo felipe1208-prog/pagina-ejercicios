@@ -1,9 +1,11 @@
 <script setup>
 import { ref, onMounted } from 'vue';
 import axios from 'axios';
+import ModalNotificacion from '@/components/ModalNotificacion.vue';
 
 const tasaBCV = ref(0);
 const indicador = ref(0);
+const mostrarModal = ref(false);
 
 const obtenerTasaBCV = async () => {
     try {
@@ -11,6 +13,10 @@ const obtenerTasaBCV = async () => {
         tasaBCV.value = response.data;
         if (tasaBCV.value) {
             indicador.value = 1;
+            mostrarModal.value = true;
+            setTimeout(() => {
+                mostrarModal.value = false;
+            }, 3000);
         };
     } catch (error) {
         console.error("Error al cargar tasa BCV: ", error);
@@ -29,6 +35,10 @@ const obtenerTasaEuro = async () => {
         tasaEuro.value = response.data;
         if (tasaEuro.value) {
             indicador.value = 2;
+            mostrarModal.value = true;
+            setTimeout(() => {
+                mostrarModal.value = false;
+            }, 3000);
         };
     } catch (error) {
         console.error("Error al cargar la tasa Euro: ", error);
@@ -43,6 +53,10 @@ const obtenerTasaUsdt = async () => {
         tasaUsdt.value = response.data;
         if (tasaUsdt.value) {
             indicador.value = 3;
+            mostrarModal.value = true;
+            setTimeout(() => {
+                mostrarModal.value = false;
+            }, 3000);
         };
     } catch (error) {
         console.error("Error al cargar tasa BCV: ", error);
@@ -111,8 +125,9 @@ const cambiarTasa = async () => {
                             <p class="detalle">Dificultad de Compra: Imposible</p>
                         </div>
                         <div class="div-btn-recarga">
-                            <i class="fa-solid fa-rotate boton-recarga" @click="indicador = 0; obtenerTasaBCV()"></i>
+                            <i class="fa-solid fa-rotate boton-recarga" @click="obtenerTasaBCV()"></i>
                         </div>
+                        <ModalNotificacion :open="mostrarModal" mensaje="Tasa BCV Actualizada"/>
                     </div>
                 </div>
                 <div class="circulo-flecha" @click="cambiarValorIndicador(); cambiarTasa()">
@@ -140,6 +155,7 @@ const cambiarTasa = async () => {
                         <div class="div-btn-recarga">
                             <i class="fa-solid fa-rotate boton-recarga" @click="obtenerTasaEuro"></i>
                         </div>
+                        <ModalNotificacion :open="mostrarModal" mensaje="Tasa Euro Actualizada"/>
                     </div>
                 </div>
                 <div class="circulo-flecha" @click="flechaDerecha = true; cambiarValorIndicador(); cambiarTasa()">
@@ -167,6 +183,7 @@ const cambiarTasa = async () => {
                         <div class="div-btn-recarga">
                             <i class="fa-solid fa-rotate boton-recarga" @click="obtenerTasaUsdt"></i>
                         </div>
+                        <ModalNotificacion :open="mostrarModal" mensaje="Tasa Usdt Actualizada"/>
                     </div>
                 </div>
                 <div class="circulo-desactivado">
