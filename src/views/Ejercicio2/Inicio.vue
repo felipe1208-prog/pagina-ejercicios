@@ -138,6 +138,11 @@ const cambiarTasa = async () => {
                         <i class="fa-solid fa-caret-right flecha"></i>
                     </div>
                 </div>
+                <div class="puntos">
+                    <div class="punto-activo"></div>
+                    <div class="punto-default"></div>
+                    <div class="punto-default"></div>
+                </div>
             </div>
             <div class="comprobacion" v-else-if="indicador === 2" key="2">
                 <!--Seccion del Euro-->
@@ -171,6 +176,11 @@ const cambiarTasa = async () => {
                         <i class="fa-solid fa-caret-right flecha"></i>
                     </div>
                 </div>
+                <div class="puntos">
+                    <div class="punto-default"></div>
+                    <div class="punto-activo"></div>
+                    <div class="punto-default"></div>
+                </div>
             </div>
             <div class="comprobacion" v-else-if="indicador === 3" key="3">
                 <!--Seccion del Usdt-->
@@ -203,6 +213,11 @@ const cambiarTasa = async () => {
                     <div class="circulo-desactivado">
                         <i class="fa-solid fa-caret-right flecha-desactivada"></i>
                     </div>
+                </div>
+                <div class="puntos">
+                    <div class="punto-default"></div>
+                    <div class="punto-default"></div>
+                    <div class="punto-activo"></div>
                 </div>
             </div>
         </Transition>
@@ -443,5 +458,27 @@ const cambiarTasa = async () => {
     align-items: center;
     justify-content: center;
     width: 100%;
+}
+
+.puntos{
+    display: flex;
+    flex-direction: row;
+    padding: 20px;
+}
+
+.punto-activo {
+    width: 10px;
+    height: 10px;
+    background-color: black;
+    border-radius: 100%;
+    margin: 5px;
+}
+
+.punto-default {
+    width: 10px;
+    height: 10px;
+    background-color: lightgray;
+    border-radius: 100%;
+    margin: 5px;
 }
 </style>
