@@ -141,58 +141,68 @@ const cambiarTasa = async () => {
             </div>
             <div class="comprobacion" v-else-if="indicador === 2" key="2">
                 <!--Seccion del Euro-->
-                <div class="circulo-flecha" @click="flechaIzquierda = true; cambiarValorIndicador(); cambiarTasa()">
-                    <i class="fa-solid fa-caret-left flecha"></i>
+                <div class="titulo-superior">
+                    <h1 class="titulo">Tasa Euro</h1>
                 </div>
-                <div class="tasa-euro">
-                    <div class="superior-tarjeta">
-                        <h1 class="titulo-tarjeta">{{ tasaEuro[0]?.promedio?.toFixed(2) }} Bs.</h1>
-                        <h1 class="titulo-tarjeta">=</h1>
-                        <h1 class="titulo-tarjeta">1€</h1>
+                <div class="fila-tarjeta">
+                    <div class="circulo-flecha" @click="flechaIzquierda = true; cambiarValorIndicador(); cambiarTasa()">
+                        <i class="fa-solid fa-caret-left flecha"></i>
                     </div>
-                    <p class="linea"></p>
-                    <div class="inferior-tarjeta">
-                        <div class="texto-inferior">
-                            <p class="detalle">Moneda: {{ tasaEuro[0].moneda }}</p>
-                            <p class="detalle">Fecha de Actualización: {{ new Date(tasaEuro[0].fechaActualizacion).toLocaleDateString('es-VE') }}</p>
-                            <p class="detalle">Dificultad de Compra: Poco Probable</p>
+                    <div class="tasa-euro">
+                        <div class="superior-tarjeta">
+                            <h1 class="titulo-tarjeta">{{ tasaEuro[0]?.promedio?.toFixed(2) }} Bs.</h1>
+                            <h1 class="titulo-tarjeta">=</h1>
+                            <h1 class="titulo-tarjeta">1€</h1>
                         </div>
-                        <div class="div-btn-recarga">
-                            <i class="fa-solid fa-rotate boton-recarga" @click="obtenerTasaEuro"></i>
+                        <p class="linea"></p>
+                        <div class="inferior-tarjeta">
+                            <div class="texto-inferior">
+                                <p class="detalle">Moneda: {{ tasaEuro[0].moneda }}</p>
+                                <p class="detalle">Fecha de Actualización: {{ new Date(tasaEuro[0].fechaActualizacion).toLocaleDateString('es-VE') }}</p>
+                                <p class="detalle">Dificultad de Compra: Poco Probable</p>
+                            </div>
+                            <div class="div-btn-recarga">
+                                <i class="fa-solid fa-rotate boton-recarga" @click="obtenerTasaEuro"></i>
+                            </div>
+                            <ModalNotificacion :open="mostrarModal" mensaje="Tasa Euro Actualizada"/>
                         </div>
-                        <ModalNotificacion :open="mostrarModal" mensaje="Tasa Euro Actualizada"/>
                     </div>
-                </div>
-                <div class="circulo-flecha" @click="flechaDerecha = true; cambiarValorIndicador(); cambiarTasa()">
-                    <i class="fa-solid fa-caret-right flecha"></i>
+                    <div class="circulo-flecha" @click="flechaDerecha = true; cambiarValorIndicador(); cambiarTasa()">
+                        <i class="fa-solid fa-caret-right flecha"></i>
+                    </div>
                 </div>
             </div>
             <div class="comprobacion" v-else-if="indicador === 3" key="3">
                 <!--Seccion del Usdt-->
-                <div class="circulo-flecha" @click="flechaIzquierda = true; cambiarValorIndicador(); cambiarTasa()">
-                    <i class="fa-solid fa-caret-left flecha"></i>
+                <div class="titulo-superior">
+                    <h1 class="titulo">Tasa USDT</h1>
                 </div>
-                <div class="tasa-usdt">
-                    <div class="superior-tarjeta">
-                        <h1 class="titulo-tarjeta">{{ tasaUsdt[1]?.promedio?.toFixed(2) }} Bs.</h1>
-                        <h1 class="titulo-tarjeta">=</h1>
-                        <h1 class="titulo-tarjeta">1₮</h1>
+                <div class="fila-tarjeta">
+                    <div class="circulo-flecha" @click="flechaIzquierda = true; cambiarValorIndicador(); cambiarTasa()">
+                        <i class="fa-solid fa-caret-left flecha"></i>
                     </div>
-                    <p class="linea"></p>
-                    <div class="inferior-tarjeta">
-                        <div class="texto-inferior">
-                            <p class="detalle">Moneda: {{ tasaUsdt[1].moneda }}</p>
-                            <p class="detalle">Fecha de Actualización: {{ new Date(tasaUsdt[1].fechaActualizacion).toLocaleDateString('es-VE') }}</p>
-                            <p class="detalle">Dificultad de Compra: Común</p>
+                    <div class="tasa-usdt">
+                        <div class="superior-tarjeta">
+                            <h1 class="titulo-tarjeta">{{ tasaUsdt[1]?.promedio?.toFixed(2) }} Bs.</h1>
+                            <h1 class="titulo-tarjeta">=</h1>
+                            <h1 class="titulo-tarjeta">1₮</h1>
                         </div>
-                        <div class="div-btn-recarga">
-                            <i class="fa-solid fa-rotate boton-recarga" @click="obtenerTasaUsdt"></i>
+                        <p class="linea"></p>
+                        <div class="inferior-tarjeta">
+                            <div class="texto-inferior">
+                                <p class="detalle">Moneda: {{ tasaUsdt[1].moneda }}</p>
+                                <p class="detalle">Fecha de Actualización: {{ new Date(tasaUsdt[1].fechaActualizacion).toLocaleDateString('es-VE') }}</p>
+                                <p class="detalle">Dificultad de Compra: Común</p>
+                            </div>
+                            <div class="div-btn-recarga">
+                                <i class="fa-solid fa-rotate boton-recarga" @click="obtenerTasaUsdt"></i>
+                            </div>
+                            <ModalNotificacion :open="mostrarModal" mensaje="Tasa Usdt Actualizada"/>
                         </div>
-                        <ModalNotificacion :open="mostrarModal" mensaje="Tasa Usdt Actualizada"/>
                     </div>
-                </div>
-                <div class="circulo-desactivado">
-                    <i class="fa-solid fa-caret-right flecha-desactivada"></i>
+                    <div class="circulo-desactivado">
+                        <i class="fa-solid fa-caret-right flecha-desactivada"></i>
+                    </div>
                 </div>
             </div>
         </Transition>
@@ -413,16 +423,18 @@ const cambiarTasa = async () => {
     display: flex;
     justify-content: flex-start;
     margin-bottom: 20px;
-    padding-left: 20px;
+    padding-left: 30px;
     border-radius: 10px;
-    height: 70px;
+    height: 100px;
     align-items: center;
     background-color: rgba(128, 128, 128, 0.322);
 }
 
 .titulo {
     font-family: Google Sans;
-    letter-spacing: 10px;
+    letter-spacing: 20px;
+    font-size: 50px;
+    font-weight: 100;
 }
 
 .fila-tarjeta {
