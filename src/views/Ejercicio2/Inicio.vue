@@ -93,7 +93,51 @@ const cambiarTasa = async () => {
     } else {
         await obtenerTasaUsdt();
     }
-}
+};
+
+const mostrarModalRegistro = ref(false);
+
+const registrarTasa = async () => {
+    try {
+        if (indicador.value == 1) {
+            const response = await axios.post("https://localhost:7242/api/TasasDivisas", {
+                fechaActualizacion: tasaBCV.value[0].fechaActualizacion,
+                tasa: "BCV",
+                precio: tasaBCV.value[0].promedio,
+                moneda: tasaBCV.value[0].moneda
+            });
+            mostrarModalRegistro.value = true;
+            setTimeout(() => {
+                mostrarModalRegistro.value = false;
+            }, 3000);
+        } else if (indicador.value == 2) {
+            const response = await axios.post("https://localhost:7242/api/TasasDivisas", {
+                fechaActualizacion: tasaEuro.value[0].fechaActualizacion,
+                tasa: "Euro",
+                precio: tasaEuro.value[0].promedio,
+                moneda: tasaEuro.value[0].moneda
+            });
+            mostrarModalRegistro.value = true;
+            setTimeout(() => {
+                mostrarModalRegistro.value = false;
+            }, 3000);
+        } else if (indicador.value == 3) {
+            const response = await axios.post("https://localhost:7242/api/TasasDivisas", {
+                fechaActualizacion: tasaUsdt.value[1].fechaActualizacion,
+                tasa: "USDT",
+                precio: tasaUsdt.value[1].promedio,
+                moneda: tasaUsdt.value[1].moneda
+            });
+            mostrarModalRegistro.value = true;
+            setTimeout(() => {
+                mostrarModalRegistro.value = false;
+            }, 3000);
+        }
+    } catch (error) {
+        console.error("Error al registrar la tasa: ", error);
+        alert("No se pudo registrar la tasa, revise su conexión");
+    }
+};
 
 </script>
 
@@ -221,7 +265,10 @@ const cambiarTasa = async () => {
                 </div>
             </div>
         </Transition>
-        <button>Registrar Tasa Actual</button>
+        <button @click="registrarTasa">Registrar Tasa Actual</button>
+        <ModalNotificacion :open="mostrarModalRegistro" v-if="indicador === 1" mensaje="Tasa BCV Registrada!"/>
+        <ModalNotificacion :open="mostrarModalRegistro" v-else-if="indicador === 2" mensaje="Tasa Euro Registrada!"/>
+        <ModalNotificacion :open="mostrarModal" v-if="indicador === 3" mensaje="Tasa USDT Registrada!"/>
     </div>
 </template>
 
