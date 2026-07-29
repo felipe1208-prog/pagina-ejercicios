@@ -160,8 +160,8 @@ const registrarTasa = async () => {
                             <p class="linea"></p>
                             <div class="inferior-tarjeta">
                                 <div class="texto-inferior">
-                                    <p class="detalle">Moneda: {{ tasaBCV[0].moneda }}</p>
-                                    <p class="detalle">Fecha de Actualización: {{ new Date(tasaBCV[0].fechaActualizacion).toLocaleDateString('es-VE') }}</p>
+                                    <p class="detalle">Moneda: {{ tasaBCV[0]?.moneda || "Cargando..." }}</p>
+                                    <p class="detalle">Fecha de Actualización: {{ new Date(tasaBCV[0]?.fechaActualizacion).toLocaleDateString('es-VE') || "Cargando..." }}</p>
                                     <p class="detalle">Dificultad de Compra: Imposible</p>
                                 </div>
                                 <div class="div-btn-recarga">
@@ -198,8 +198,8 @@ const registrarTasa = async () => {
                         <p class="linea"></p>
                         <div class="inferior-tarjeta">
                             <div class="texto-inferior">
-                                <p class="detalle">Moneda: {{ tasaEuro[0].moneda }}</p>
-                                <p class="detalle">Fecha de Actualización: {{ new Date(tasaEuro[0].fechaActualizacion).toLocaleDateString('es-VE') }}</p>
+                                <p class="detalle">Moneda: {{ tasaEuro[0]?.moneda || "Cargando..." }}</p>
+                                <p class="detalle">Fecha de Actualización: {{ new Date(tasaEuro[0]?.fechaActualizacion).toLocaleDateString('es-VE') || "Cargando..." }}</p>
                                 <p class="detalle">Dificultad de Compra: Poco Probable</p>
                             </div>
                             <div class="div-btn-recarga">
@@ -236,8 +236,8 @@ const registrarTasa = async () => {
                         <p class="linea"></p>
                         <div class="inferior-tarjeta">
                             <div class="texto-inferior">
-                                <p class="detalle">Moneda: {{ tasaUsdt[1].moneda }}</p>
-                                <p class="detalle">Fecha de Actualización: {{ new Date(tasaUsdt[1].fechaActualizacion).toLocaleDateString('es-VE') }}</p>
+                                <p class="detalle">Moneda: {{ tasaUsdt[1]?.moneda || "Cargando..." }}</p>
+                                <p class="detalle">Fecha de Actualización: {{ new Date(tasaUsdt[1]?.fechaActualizacion).toLocaleDateString('es-VE') || "Cargando..." }}</p>
                                 <p class="detalle">Dificultad de Compra: Común</p>
                             </div>
                             <div class="div-btn-recarga">
