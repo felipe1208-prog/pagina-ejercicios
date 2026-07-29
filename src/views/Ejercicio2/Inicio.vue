@@ -96,6 +96,7 @@ const cambiarTasa = async () => {
 };
 
 const mostrarModalRegistro = ref(false);
+const mensajeRegistro = ref(""); 
 
 const registrarTasa = async () => {
     try {
@@ -106,13 +107,15 @@ const registrarTasa = async () => {
                 precio: tasaBCV.value[0].promedio,
                 moneda: tasaBCV.value[0].moneda
             });
+            mensajeRegistro.value = "Tasa BCV Retgistrada!";
         } else if (indicador.value == 2) {
             const response = await axios.post("https://localhost:7242/api/TasasDivisas", {
                 fechaActualizacion: tasaEuro.value[0].fechaActualizacion,
-                tasa: "Euro",
+                tasa: "EURO",
                 precio: tasaEuro.value[0].promedio,
                 moneda: tasaEuro.value[0].moneda
             });
+            mensajeRegistro.value = "Tasa Euro Retgistrada!";
         } else if (indicador.value == 3) {
             const response = await axios.post("https://localhost:7242/api/TasasDivisas", {
                 fechaActualizacion: tasaUsdt.value[1].fechaActualizacion,
@@ -120,6 +123,7 @@ const registrarTasa = async () => {
                 precio: tasaUsdt.value[1].promedio,
                 moneda: tasaUsdt.value[1].moneda
             });
+            mensajeRegistro.value = "Tasa USDT Retgistrada!";
         }
         mostrarModalRegistro.value = true;
         setTimeout(() => {
@@ -258,9 +262,7 @@ const registrarTasa = async () => {
             </div>
         </Transition>
         <button @click="registrarTasa">Registrar Tasa Actual</button>
-        <ModalNotificacion :open="mostrarModalRegistro" v-if="indicador === 1" mensaje="Tasa BCV Registrada!"/>
-        <ModalNotificacion :open="mostrarModalRegistro" v-else-if="indicador === 2" mensaje="Tasa Euro Registrada!"/>
-        <ModalNotificacion :open="mostrarModalRegistro" v-else-if="indicador === 3" mensaje="Tasa USDT Registrada!"/>
+        <ModalNotificacion :open="mostrarModalRegistro" :mensaje="mensajeRegistro"/>
     </div>
 </template>
 
