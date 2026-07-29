@@ -4,17 +4,21 @@ import axios from 'axios';
 
 const tasaRegistrada = ref(null);
 const mostrarInfo = ref(0);
+const mensajeVacio = ref("");
 //0: Cargando, 1: Mensaje 404, 2: Info normal
 
 const obtenerTasasRegistradas = async () => {
     try {
         const response = await axios.get("https://localhost:7242/api/TasasDivisas/USDT");
         tasaRegistrada.value = response.data;
-        if (tasaRegistrada.value) {
-            mostrarInfo.value = 1;
-        }
+        mostrarInfo.value = 2;
     } catch (error) {
-        console.error("Error al obtener las tasas registradas: ", error);
+        if (error.response && error.response.status === 404) {
+            mensajeVacio.value = error.response.data;
+            mostrarInfo.value = 1;
+        } else {
+            console.error("Error al obtener las tasas registradas: ", error);
+        }
     }
 };
 
@@ -34,7 +38,11 @@ onMounted(() => {
                 <div class="skeleton-loader"></div>
             </div>
         </div>
-        <div class="cuadro-principal" v-else-if="mostrarInfo == 1"></div>
+        <div class="cuadro-principal" v-else-if="mostrarInfo == 1">
+            <div class="cuadro-mensaje-error">
+                <div class="mensaje-error">{{ mensajeVacio.mensaje }}</div>
+            </div>
+        </div>
         <div class="cuadro-principal" v-else-if="mostrarInfo == 2"></div>
     </div>
 </template>
@@ -104,6 +112,28 @@ onMounted(() => {
     100% { 
         transform: rotate(360deg); 
     }
+}
+
+.cuadro-mensaje-error {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 30px;
+    text-align: center;
+    width: 600px;
+    height: 300px;
+    border-radius: 20px;
+    background: rgb(223, 225, 235);
+    border-radius: 50px;
+    box-shadow: rgba(0, 0, 0, 0.17) 0px -23px 25px 0px inset, rgba(0, 0, 0, 0.15) 0px -36px 30px 0px inset, rgba(0, 0, 0, 0.1) 0px -79px 40px 0px inset, rgba(0, 0, 0, 0.06) 0px 2px 1px, rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px, rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px;
+}
+
+.mensaje-error {
+    letter-spacing: 1.5px;
+    line-height: 50px;
+    font-family: Google Sans;
+    font-weight: 600;
+    font-size: 40px;
 }
 
 </style>
