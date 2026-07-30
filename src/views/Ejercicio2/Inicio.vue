@@ -98,39 +98,54 @@ const cambiarTasa = async () => {
 const mostrarModalRegistro = ref(false);
 const mensajeRegistro = ref(""); 
 
-const registrarTasa = async () => {
+const registrarTasaBcv = async () => {
     try {
-        if (indicador.value == 1) {
-            const response = await axios.post("https://localhost:7242/api/TasasDivisas", {
-                fechaActualizacion: tasaBCV.value[0].fechaActualizacion,
-                tasa: "BCV",
-                precio: tasaBCV.value[0].promedio,
-                moneda: tasaBCV.value[0].moneda
-            });
-            mensajeRegistro.value = "Tasa BCV Retgistrada!";
-        } else if (indicador.value == 2) {
-            const response = await axios.post("https://localhost:7242/api/TasasDivisas", {
-                fechaActualizacion: tasaEuro.value[0].fechaActualizacion,
-                tasa: "EURO",
-                precio: tasaEuro.value[0].promedio,
-                moneda: tasaEuro.value[0].moneda
-            });
-            mensajeRegistro.value = "Tasa Euro Retgistrada!";
-        } else if (indicador.value == 3) {
-            const response = await axios.post("https://localhost:7242/api/TasasDivisas", {
-                fechaActualizacion: tasaUsdt.value[1].fechaActualizacion,
-                tasa: "USDT",
-                precio: tasaUsdt.value[1].promedio,
-                moneda: tasaUsdt.value[1].moneda
-            });
-            mensajeRegistro.value = "Tasa USDT Retgistrada!";
-        }
+        const response = await axios.post("https://localhost:7242/api/TasasDivisas", {
+            fechaActualizacion: tasaBCV.value[0].fechaActualizacion,
+            tasa: "BCV",
+            precio: tasaBCV[0].promedio,
+            moneda: tasaBCV[0].moneda
+        });
+        mensajeRegistro.value = "Tasa BCV Registrada!";
         mostrarModalRegistro.value = true;
-        setTimeout(() => {
+        setInterval(() => {
             mostrarModalRegistro.value = false;
-        }, 3000);
+        });
     } catch (error) {
-        console.error("Error al registrar la tasa: ", error);
+        console.error("Error al registrar la tasa BCV: ", error);
+        alert("No se pudo registrar la tasa, revise su conexión");
+    }
+};
+
+const registrarTasaEuro = async () => {
+    const response = await axios.post("https://localhost:7242/api/TasasDivisas", {
+        fechaActualizacion: tasaEuro.value[0].fechaActualizacion,
+        tasa: "EURO",
+        precio: tasaEuro.value[0].promedio,
+        moneda: tasaEuro.value[0].moneda
+    });
+    mensajeRegistro.value = "Tasa Euro Registrada!";
+    mostrarModalRegistro.value = true;
+    setInterval(() => {
+        mostrarModalRegistro.value = false; 
+    });
+};
+
+const registrarTasaUsdt = async () => {
+    try {
+        const response = await axios.post("https://localhost:7242/api/TasasDivisas", {
+            fechaActualizacion: tasaUsdt.value[1].fechaActualizacion,
+            tasa: "USDT",
+            precio: tasaUsdt.value[1].promedio,
+            moneda: tasaUsdt.value[1].moneda
+        });
+        mensajeRegistro.value = "Tasa BCV Registrada!";
+        mostrarModalRegistro.value = true;
+        setInterval(() => {
+            mostrarModalRegistro.value = false;
+        });
+    } catch (error) {
+        console.error("Error al registrar la tasa BCV: ", error);
         alert("No se pudo registrar la tasa, revise su conexión");
     }
 };
@@ -261,7 +276,9 @@ const registrarTasa = async () => {
                 </div>
             </div>
         </Transition>
-        <button @click="registrarTasa">Registrar Tasa Actual</button>
+        <button v-if="indicador === 1" @click="registrarTasaBcv">Registrar Tasa Actual</button>
+        <button v-else-if="indicador === 2" @click="registrarTasaEuro">Registrar Tasa Actual</button>
+        <button v-else-if="indicador === 3" @click="registrarTasaUsdt">Registrar Tasa Actual</button>
         <ModalNotificacion :open="mostrarModalRegistro" :mensaje="mensajeRegistro"/>
     </div>
 </template>
