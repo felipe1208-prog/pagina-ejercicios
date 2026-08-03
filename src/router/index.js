@@ -7,6 +7,7 @@ import Euro from '@/views/Ejercicio2/Euro.vue'
 import Usdt from '@/views/Ejercicio2/Usdt.vue'
 import HomeEjercicio2 from '@/views/Ejercicio2/HomeEjercicio2.vue'
 import Inicio from '@/views/Ejercicio2/Inicio.vue'
+import Ejercicio3 from '@/views/Ejercicio3.vue'
 
 const router = createRouter({
   history: createWebHistory(),
@@ -47,6 +48,11 @@ const router = createRouter({
           component: Usdt
         },
       ]
+    },
+    {
+      path: "/ejercicio3",
+      name: "ejercicio3",
+      component: Ejercicio3
     }
   ],
 })
