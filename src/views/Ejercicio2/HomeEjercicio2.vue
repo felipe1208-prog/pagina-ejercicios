@@ -46,6 +46,10 @@ onMounted(() => {
 }
 
 .contenido {
+    margin-left: 250px;
+    width: calc(100% - 250px);
+    min-height: 100vh;
+    box-sizing: border-box;
     flex-grow: 1;
     padding: 20px;
 }

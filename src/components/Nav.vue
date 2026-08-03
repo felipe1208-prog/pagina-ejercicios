@@ -17,6 +17,9 @@ defineProps({
 
 <style scoped>
 .navegacion {
+    position: fixed;
+    top: 0;
+    left: 0;
     display: flex;
     flex-direction: column;
     box-sizing: border-box;
