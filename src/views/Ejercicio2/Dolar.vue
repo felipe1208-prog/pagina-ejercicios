@@ -43,7 +43,10 @@ onMounted(() => {
                 <div class="mensaje-error">{{ mensajeVacio.mensaje }}</div>
             </div>
         </div>
-        <div class="cuadro-principal" v-else-if="mostrarInfo == 2"></div>
+        <div class="cuadro-container-crud" v-else-if="mostrarInfo == 2"></div>
+            <div class="cuadrito">
+                <h1>{{ tasaRegistrada.value }}</h1>
+            </div>
     </div>
 </template>
 
@@ -136,4 +139,11 @@ onMounted(() => {
     font-size: 40px;
 }
 
+.cuadro-container-crud {
+    display: flex;
+}
+
+.cuadrito {
+    border: 1px solid black;
+}
 </style>

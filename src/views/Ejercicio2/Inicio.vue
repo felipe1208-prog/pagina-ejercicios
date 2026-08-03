@@ -103,8 +103,8 @@ const registrarTasaBcv = async () => {
         const response = await axios.post("https://localhost:7242/api/TasasDivisas", {
             fechaActualizacion: tasaBCV.value[0].fechaActualizacion,
             tasa: "BCV",
-            precio: tasaBCV[0].promedio,
-            moneda: tasaBCV[0].moneda
+            precio: tasaBCV.value[0].promedio.toFixed(2),
+            moneda: tasaBCV.value[0].moneda
         });
         mensajeRegistro.value = "Tasa BCV Registrada!";
         mostrarModalRegistro.value = true;
@@ -184,7 +184,7 @@ const registrarTasaUsdt = async () => {
                                     <p class="detalle">Dificultad de Compra: Imposible</p>
                                 </div>
                                 <div class="div-btn-recarga">
-                                    <i class="fa-solid fa-rotate boton-recarga" @click="obtenerTasaBCV()"></i>
+                                    <i class="fa-solid fa-rotate boton-recarga" @click="obtenerTasaBCV"></i>
                                 </div>
                                 <ModalNotificacion :open="mostrarModal" mensaje="Tasa BCV Actualizada"/>
                             </div>
