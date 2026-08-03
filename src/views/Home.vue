@@ -16,7 +16,7 @@ const listaTarjetasEjercicios = ref([
         descripcion: "Endpoint GET que devuelva JSON con tasa de cambio (USD, EUR). Consumir en onMounted y mostrar tarjetas reactivas",
         url: "/ejercicio2",
         resumen: "WIDGET FINANCIERO",
-        img: "../assets/fotoo.jpeg"
+        img: "../assets/ej2.png"
     },
     {
         id: "3",
