@@ -130,6 +130,9 @@ const listaTarjetasEjercicios = ref([
     box-sizing: border-box;
 }
 
+</style>
+
+<style scoped>
 .container {
     text-align: center;
     background:  
