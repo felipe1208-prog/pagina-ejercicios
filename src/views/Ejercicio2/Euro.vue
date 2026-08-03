@@ -43,7 +43,18 @@ onMounted(() => {
                 <div class="mensaje-error">{{ mensajeVacio.mensaje }}</div>
             </div>
         </div>
-        <div class="cuadro-principal" v-else-if="mostrarInfo == 2"></div>
+        <div class="cuadro-container-crud" v-else-if="mostrarInfo == 2">
+            <div class="titulos-campos">
+                <div class="campo">Precio</div>
+                <div class="campo">Fecha</div>
+                <div class="campo">Moneda</div>
+            </div>
+            <div class="linea-registro" v-for="(registro, index) in tasaRegistrada" :key="index">
+                <div class="cuadro-registro">{{ registro.precio }}</div>
+                <div class="cuadro-registro">{{  new Date(registro.fechaActualizacion).toLocaleDateString('es-VE') }}</div>
+                <div class="cuadro-registro">{{ registro.moneda }}</div>
+            </div>
+        </div>
     </div>
 </template>
 
@@ -136,4 +147,52 @@ onMounted(() => {
     font-size: 40px;
 }
 
+.cuadro-container-crud {
+    display: flex;
+    flex-direction: column;
+}
+
+.linea-registro {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: 100%;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.cuadro-registro {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: Google Sans;
+    font-size: 20px;
+    height: 50px;
+    flex: 1; 
+    border: 1px solid black;
+}
+
+.titulos-campos {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: 100%;
+    padding-left: 20px;
+    padding-right: 20px;
+    margin-bottom: 20px;
+}
+
+.campo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    height: 50px;
+    flex: 1; 
+    border: 1px solid black;
+    font-family: Google Sans;
+    font-size: 30px;
+    font-weight: bold;
+    letter-spacing: 2px;
+}
 </style>
