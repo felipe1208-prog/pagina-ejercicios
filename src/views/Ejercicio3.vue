@@ -12,6 +12,14 @@ const calcularSueldo = async () => {
     } catch (error) {
         if (error.response) {
             mensajeError.value = error.response.data;
+            Swal.fire({
+                icon: "error",
+                title: "Monto inválido",
+                text: "Ingrese un monto mayor a 0",
+                customClass: {
+                    popup: "alerta-dulce"
+                }
+            });
         } else {
             console.error("Error al calcular el sueldo: ", error);
         }
@@ -48,7 +56,15 @@ const calcularSueldo = async () => {
     </div>
 </template>
 
+
+<style>
+.alerta-dulce {
+    font-family: Google Sans;
+}
+</style>
+
 <style scoped>
+
 .container {
     display: flex;
     justify-content: center;
