@@ -70,6 +70,11 @@ const calcularSueldo = async () => {
     justify-content: center;
     align-items: center;
     min-height: 100vh;
+    background-image: url('../assets/Gemini_Generated_Image_chakxfchakxfchak.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
 }
 
 .label-boton {
@@ -81,6 +86,8 @@ const calcularSueldo = async () => {
     height: 600px;
     flex-direction: column;
     gap: 50px;
+    box-shadow: 6px 6px 10px black;
+    background-color: white;
 }
 
 .boton {
@@ -102,6 +109,11 @@ const calcularSueldo = async () => {
     height: 50px;
     font-size: 25px;
     font-family: Google Sans;
+    box-shadow: inset 0px 0px 5px black;
+}
+
+.ingreso:focus {
+    outline: none;
 }
 
 .titulo {
@@ -116,7 +128,7 @@ const calcularSueldo = async () => {
     align-items: center;
     flex-direction: row;
     border: 1px solid black;
-    border-top: 6px solid black;
+    box-shadow: inset 0px 0px 10px black;
     height: 250px;
     width: 500px;
 }
