@@ -28,7 +28,7 @@ const listaTarjetasEjercicios = ref([
     {
         id: "4",
         descripcion: "Endpoint GET con parámetro. Filtrar lista usando .Where(). Input que dispara búsquedas al teclear y renderiza empleados.",
-        url: "nohay",
+        url: "/ejercicio4",
         resumen: "DIRECTORIO",
         img: "../assets/fotoo.jpeg"
     },
