@@ -23,7 +23,7 @@ const listaTarjetasEjercicios = ref([
         descripcion: "Endpoint POST que reciba sueldo bruto, deduzca impuestos y devuelva neto. Formulario de ingreso de sueldo e impresión del recibo dinámico",
         url: "/ejercicio3",
         resumen: "NÓMINA (LÓGICA)",
-        img: "../assets/fotoo.jpeg"
+        img: "../assets/ej3.png"
     },
     {
         id: "4",
