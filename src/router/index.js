@@ -8,6 +8,7 @@ import Usdt from '@/views/Ejercicio2/Usdt.vue'
 import HomeEjercicio2 from '@/views/Ejercicio2/HomeEjercicio2.vue'
 import Inicio from '@/views/Ejercicio2/Inicio.vue'
 import Ejercicio3 from '@/views/Ejercicio3.vue'
+import Ejercicio4 from '@/views/Ejercicio4.vue'
 
 const router = createRouter({
   history: createWebHistory(),
@@ -53,6 +54,11 @@ const router = createRouter({
       path: "/ejercicio3",
       name: "ejercicio3",
       component: Ejercicio3
+    },
+    {
+      path: "/ejercicio4",
+      name: "ejercicio4",
+      component: Ejercicio4
     }
   ],
 })
