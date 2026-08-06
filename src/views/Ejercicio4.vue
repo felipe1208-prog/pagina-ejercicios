@@ -7,7 +7,7 @@ const busqueda = ref("");
 
 const busquedaEmpleado = async () => {
     try {
-        const response = await axios.get(`https://localhost:7242/api/Ejercicio3?termino=${busqueda.value}`)
+        const response = await axios.get(`https://localhost:7242/api/Ejercicio4?termino=${busqueda.value}`)
         empleado.value = response.data;
     } catch (error) {
         if (error.response) {
@@ -39,7 +39,9 @@ const busquedaEmpleado = async () => {
                 <p class="descripcion">Puedes filtrar por el nombre o el ID del empleado</p>
             </div>
         </div>
-        <h1>{{ empleado.value }}</h1>
+        <div v-for="(registro, index) in empleado" key="index">
+            <h1>{{ empleado?.resultados }}</h1>
+        </div>
     </div>
 </template>
 
@@ -137,6 +139,10 @@ const busquedaEmpleado = async () => {
 .input:focus {
     outline: none;
     box-shadow: inset 0px 0px 5px black;
+}
+
+h1 {
+    color: white;
 }
 
 </style>
