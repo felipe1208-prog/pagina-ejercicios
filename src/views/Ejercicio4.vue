@@ -42,7 +42,7 @@ const busquedaEmpleado = async () => {
         <div class="empleados">
             <div class="campo-seccion-empleados">
                 <div class="titulo-seccion-empleados">
-                    <div class="id-nombre">ID</div>
+                    <div class="id-nombre">ID del Empleado</div>
                     <div class="id-nombre">Nombre y Apellido</div>
                 </div>
                 <div class="tabla-seccion-empleados">
@@ -174,12 +174,14 @@ const busquedaEmpleado = async () => {
 .titulo-seccion-empleados {
     display: flex;
     align-items: center;
-    justify-content: space-evenly;
     width: 100%;
 }
 
 .id-nombre {
     font-family: Google Sans;
+    width: 100%;
+    display: flex;
+    justify-content: center;
     font-size: 40px;
     font-weight: 500;
     color: white;
@@ -190,11 +192,30 @@ const busquedaEmpleado = async () => {
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    background-color: white;
+    border: 5px solid green;
+    width: 100%;
+    border-radius: 5px;
+    margin-top: 30px;
 }
 
 .linea-registro-empleado {
     display: flex;
     flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.cuadro-registro {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: Google Sans;
+    font-size: 30px;
+    border: 1px solid black;
+    width: 100%;
+    height: 60px;
 }
 
 </style>
