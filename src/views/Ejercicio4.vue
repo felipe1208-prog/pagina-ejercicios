@@ -8,7 +8,7 @@ const busqueda = ref("");
 const busquedaEmpleado = async () => {
     try {
         const response = await axios.get(`https://localhost:7242/api/Ejercicio4?termino=${busqueda.value}`)
-        empleado.value = response.data;
+        empleado.value = response.data.resultados;
     } catch (error) {
         if (error.response) {
             if (error.response.status === 404 || error.response.status === 400) {
@@ -39,8 +39,19 @@ const busquedaEmpleado = async () => {
                 <p class="descripcion">Puedes filtrar por el nombre o el ID del empleado</p>
             </div>
         </div>
-        <div v-for="(registro, index) in empleado" key="index">
-            <h1>{{ empleado?.resultados }}</h1>
+        <div class="empleados">
+            <div class="campo-seccion-empleados">
+                <div class="titulo-seccion-empleados">
+                    <div class="id-nombre">ID</div>
+                    <div class="id-nombre">Nombre y Apellido</div>
+                </div>
+                <div class="tabla-seccion-empleados">
+                    <div class="linea-registro-empleado" v-for="(registro, index) in empleado" key="index">
+                        <div class="cuadro-registro">{{ registro.id }}</div>
+                        <div class="cuadro-registro">{{ registro.nombre }}</div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </template>
@@ -141,8 +152,49 @@ const busquedaEmpleado = async () => {
     box-shadow: inset 0px 0px 5px black;
 }
 
-h1 {
+.empleados {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.campo-seccion-empleados {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-color: rgba(32, 32, 32, 0.753);
+    width: 90%;
+    height: auto;
+    border-radius: 10px;
+    padding: 30px;
+    margin-top: 30px;
+}
+
+.titulo-seccion-empleados {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    width: 100%;
+}
+
+.id-nombre {
+    font-family: Google Sans;
+    font-size: 40px;
+    font-weight: 500;
     color: white;
+}
+
+.tabla-seccion-empleados {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.linea-registro-empleado {
+    display: flex;
+    flex-direction: row;
 }
 
 </style>
