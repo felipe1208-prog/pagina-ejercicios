@@ -1,12 +1,15 @@
 <script setup>
 import { ref } from 'vue';
 import axios from 'axios';
+import { debounce } from 'lodash/debounce';
 
 const empleado = ref("");
 const busqueda = ref("");
 
-const busquedaEmpleado = async () => {
+const busquedaEmpleado = debounce(async () => {
     try {
+        if (!busqueda.value) return;
+        
         const response = await axios.get(`https://localhost:7242/api/Ejercicio4?termino=${busqueda.value}`)
         empleado.value = response.data.resultados;
     } catch (error) {
@@ -20,7 +23,7 @@ const busquedaEmpleado = async () => {
             console.error("Error al cargar los empleados: ", error);
         }
     }
-}
+}, 3000);
 
 </script>
 
