@@ -5,16 +5,23 @@ import { debounce } from 'lodash';
 
 const empleado = ref([]);
 const busqueda = ref("");
+const mensajeError = ref("");
 
 const busquedaEmpleado = debounce(async () => {
     try {
-        if (!busqueda.value) return;
-        
+        if (!busqueda.value) {
+            empleado.value = [];
+            mensajeError.value = "";
+            return
+        }
         const response = await axios.get(`https://localhost:7242/api/Ejercicio4?termino=${busqueda.value}`)
         empleado.value = response.data.resultados;
+        mensajeError.value = "";
     } catch (error) {
         if (error.response) {
             if (error.response.status === 404 || error.response.status === 400) {
+                mensajeError.value = error.response.data.mensaje;
+                empleado.value = [];
                 console.error(`Error ${error.response.status}: `, error);
             } else {
                 console.error(`Error ${error.response.status}: `, error);
@@ -48,12 +55,13 @@ const busquedaEmpleado = debounce(async () => {
                     <div class="id-nombre">ID del Empleado</div>
                     <div class="id-nombre">Nombre y Apellido</div>
                 </div>
-                <div class="tabla-seccion-empleados">
+                <div class="tabla-seccion-empleados" v-if="empleado.length > 0">
                     <div class="linea-registro-empleado" v-for="(registro, index) in empleado" :key="registro.id">
                         <div class="cuadro-registro">{{ registro.id }}</div>
                         <div class="cuadro-registro">{{ registro.nombre }}</div>
                     </div>
                 </div>
+                <div class="tabla-seccion-empleados" v-else>{{ mensajeError }}</div>
             </div>
         </div>
     </div>
