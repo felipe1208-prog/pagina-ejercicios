@@ -208,6 +208,8 @@ const busquedaEmpleado = debounce(async () => {
     width: 100%;
     border-radius: 5px;
     margin-top: 30px;
+    font-family: Google Sans;
+    font-size: 30px;
 }
 
 .linea-registro-empleado {
