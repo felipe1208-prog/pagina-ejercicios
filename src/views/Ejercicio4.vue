@@ -1,9 +1,9 @@
 <script setup>
 import { ref } from 'vue';
 import axios from 'axios';
-import { debounce } from 'lodash/debounce';
+import { debounce } from 'lodash';
 
-const empleado = ref("");
+const empleado = ref([]);
 const busqueda = ref("");
 
 const busquedaEmpleado = debounce(async () => {
@@ -23,7 +23,7 @@ const busquedaEmpleado = debounce(async () => {
             console.error("Error al cargar los empleados: ", error);
         }
     }
-}, 3000);
+}, 1000);
 
 </script>
 
@@ -49,7 +49,7 @@ const busquedaEmpleado = debounce(async () => {
                     <div class="id-nombre">Nombre y Apellido</div>
                 </div>
                 <div class="tabla-seccion-empleados">
-                    <div class="linea-registro-empleado" v-for="(registro, index) in empleado" key="index">
+                    <div class="linea-registro-empleado" v-for="(registro, index) in empleado" :key="registro.id">
                         <div class="cuadro-registro">{{ registro.id }}</div>
                         <div class="cuadro-registro">{{ registro.nombre }}</div>
                     </div>
