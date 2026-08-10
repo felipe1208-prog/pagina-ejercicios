@@ -9,6 +9,7 @@ import HomeEjercicio2 from '@/views/Ejercicio2/HomeEjercicio2.vue'
 import Inicio from '@/views/Ejercicio2/Inicio.vue'
 import Ejercicio3 from '@/views/Ejercicio3.vue'
 import Ejercicio4 from '@/views/Ejercicio4.vue'
+import Ejercicio5 from '@/views/Ejercicio5.vue'
 
 const router = createRouter({
   history: createWebHistory(),
@@ -59,6 +60,11 @@ const router = createRouter({
       path: "/ejercicio4",
       name: "ejercicio4",
       component: Ejercicio4
+    },
+    {
+      path: "/ejercicio5",
+      name: "ejercicio5",
+      component: Ejercicio5
     }
   ],
 })

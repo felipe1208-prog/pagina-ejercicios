@@ -35,7 +35,7 @@ const listaTarjetasEjercicios = ref([
     {
         id: "5",
         descripcion: "Proteger DTO con [Required] y [EmailAddress]. Manejar HTTP 400 y mostrar textos en rojo",
-        url: "nohay",
+        url: "/ejercicio5",
         resumen: "ERRORES",
         img: "../assets/fotoo.jpeg"
     },
