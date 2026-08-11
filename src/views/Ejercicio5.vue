@@ -40,15 +40,15 @@ const inicioSesion = async () => {
     <form class="form-control" action="" @submit.prevent="inicioSesion">
         <p class="title">Login</p>
         <div class="input-field">
-            <input class="input" type="text" v-model="nombreUsuario"/>
+            <input class="input" type="text" v-model="nombreUsuario" placeholder=""/>
             <label class="label" for="input">Nombre</label>
         </div>
         <div class="input-field">
-            <input class="input" type="text" v-model="email"/>
+            <input class="input" type="text" v-model="email" placeholder=""/>
             <label class="label" for="input">Correo Electrónico</label>
         </div>
         <div class="input-field">
-            <input class="input" type="password" v-model="clave"/>
+            <input class="input" type="password" v-model="clave" placeholder=""/>
             <label class="label" for="input">Contraseña</label>
         </div>
         <button class="submit-btn">Inciar Sesión</button>
@@ -113,7 +113,7 @@ const inicioSesion = async () => {
     z-index: 2;
 }
 .input-field .input:focus ~ .label,
-.input-field .input:valid ~ .label {
+.input-field .input:not(:placeholder-shown) ~ .label {
     top: 5px;
     left: 5px;
     font-size: 12px;
