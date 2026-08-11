@@ -3,6 +3,7 @@ import { ref } from 'vue';
 import axios from 'axios';
 
 const mensaje = ref("");
+const esError = ref(false);
 const nombreUsuario = ref("");
 const clave = ref("");
 const email = ref("");
@@ -14,14 +15,17 @@ const inicioSesion = async () => {
             correoElectronico: email.value,
             clave: clave.value
         });
-        mensaje.value = response.data;
+        esError.value = false;
+        mensaje.value = response.data.mensaje;
     } catch (error) {
+            esError.value = true;
         if (error.response.data.errors) {
             mensaje.value = Object.values(error.response.data.errors)[0][0];
         } else if (error.response.data.mensaje) {
             mensaje.value = error.response.data.mensaje;
         } else {
             console.error("Error: ", error);
+            mensaje.value = "Error al conectar con el servidor";
         }
     }
 }
@@ -30,18 +34,21 @@ const inicioSesion = async () => {
 <template>
 
 <div class="container">
-    <form class="form-control" action="">
+    <div class="container-mensaje" :class="{ 'container-exito': !esError, 'container-error': esError }" v-if="mensaje">
+        <h3 class="msj-error">{{ mensaje }}</h3>
+    </div>
+    <form class="form-control" action="" @submit.prevent="inicioSesion">
         <p class="title">Login</p>
         <div class="input-field">
-            <input required="" class="input" type="text" />
+            <input class="input" type="text" v-model="nombreUsuario"/>
             <label class="label" for="input">Nombre</label>
         </div>
         <div class="input-field">
-            <input required="" class="input" type="text" />
+            <input class="input" type="text" v-model="email"/>
             <label class="label" for="input">Correo Electrónico</label>
         </div>
         <div class="input-field">
-            <input required="" class="input" type="password" />
+            <input class="input" type="password" v-model="clave"/>
             <label class="label" for="input">Contraseña</label>
         </div>
         <button class="submit-btn">Inciar Sesión</button>
@@ -56,24 +63,27 @@ const inicioSesion = async () => {
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
     height: 100vh;
+    font-family: Google Sans;
 }
 
 .form-control {
     margin: 20px;
     background-color: #ffffff;
     box-shadow: 0 15px 25px rgba(0, 0, 0, 0.6);
-    width: 400px;
+    width: 500px;
     display: flex;
     justify-content: center;
     flex-direction: column;
     gap: 10px;
-    padding: 25px;
+    padding: 40px;
     border-radius: 8px;
 }
 .title {
-    font-size: 28px;
+    font-size: 30px;
     font-weight: 800;
+    font-family: Google Sans;
 }
 .input-field {
     position: relative;
@@ -132,5 +142,36 @@ const inicioSesion = async () => {
     box-shadow: 0px 0px 0px 2px #ffffff, 0px 0px 0px 4px #0000003a;
 }
 
+.container-mensaje {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 8px;
+    max-height: 100vh;
+    width: 500px;
+    padding: 25px;
+}
+
+.container-error {
+    border: 3px dashed red;
+    background-color: rgba(255, 0, 0, 0.075);
+}
+
+.container-error h3 {
+    font-family: Google Sans;
+    font-weight: bold;
+    color: red;
+}
+
+.container-exito {
+    border: 3px dashed green;
+    background-color: rgba(0, 255, 0, 0.164);
+}
+
+.container-exito h3 {
+    font-family: Google Sans;
+    font-weight: bold;
+    color: green;
+}
 
 </style>
