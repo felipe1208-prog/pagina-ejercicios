@@ -38,7 +38,7 @@ const inicioSesion = async () => {
         <h3 class="msj-error">{{ mensaje }}</h3>
     </div>
     <form class="form-control" action="" @submit.prevent="inicioSesion">
-        <p class="title">Login</p>
+        <p class="title">Login Insystech</p>
         <div class="input-field">
             <input class="input" type="text" v-model="nombreUsuario" placeholder=""/>
             <label class="label" for="input">Nombre</label>
