@@ -51,6 +51,7 @@ const inicioSesion = async () => {
             <input class="input" type="password" v-model="clave" placeholder=""/>
             <label class="label" for="input">Contraseña</label>
         </div>
+        <p>Olvidé mi Clave</p>
         <button class="submit-btn">Inciar Sesión</button>
     </form>
 </div>
